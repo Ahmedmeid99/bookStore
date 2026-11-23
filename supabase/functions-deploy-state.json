@@ -1,0 +1,13 @@
+{
+  "projectId": "72850010",
+  "functions": {
+    "openlibrary-search": {
+      "hasChanged": false,
+      "hash": "49fd792b65e115832e326f91f1589b9bf3902fa8e7115ec4e216a3160f869d90"
+    },
+    "place-order": {
+      "hasChanged": false,
+      "hash": "2c185b5a0b3bc41e91b2245f2da546d09789ac23160e8e290276c8b9799aca6e"
+    }
+  }
+}

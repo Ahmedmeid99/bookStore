@@ -1,0 +1,163 @@
+import type { Language } from '@/types/database';
+
+type Dict = Record<string, { ar: string; en: string }>;
+
+export const translations: Dict = {
+  // Navigation
+  'nav.home': { ar: 'الرئيسية', en: 'Home' },
+  'nav.catalog': { ar: 'الكتب', en: 'Books' },
+  'nav.categories': { ar: 'التصنيفات', en: 'Categories' },
+  'nav.account': { ar: 'حسابي', en: 'Account' },
+  'nav.wishlist': { ar: 'المفضلة', en: 'Wishlist' },
+  'nav.cart': { ar: 'السلة', en: 'Cart' },
+  'nav.login': { ar: 'تسجيل الدخول', en: 'Login' },
+  'nav.signup': { ar: 'إنشاء حساب', en: 'Sign Up' },
+  'nav.logout': { ar: 'تسجيل الخروج', en: 'Logout' },
+  'nav.admin': { ar: 'لوحة الإدارة', en: 'Admin' },
+  'nav.search': { ar: 'بحث...', en: 'Search...' },
+
+  // Homepage
+  'home.hero.title': { ar: 'اكتشف عالم الكتب العربية', en: 'Discover the World of Arabic Books' },
+  'home.hero.subtitle': { ar: 'روايات، شعر، فلسفة، تاريخ وأكثر — من أعظم الأقلام العربية إلى يديك', en: 'Novels, poetry, philosophy, history and more — from the greatest Arab pens to your hands' },
+  'home.hero.cta': { ar: 'تسوق الآن', en: 'Shop Now' },
+  'home.categories.title': { ar: 'تصفح حسب التصنيف', en: 'Browse by Category' },
+  'home.categories.subtitle': { ar: 'اختر من بين مجموعتنا الواسعة', en: 'Choose from our wide collection' },
+  'home.bestsellers.title': { ar: 'الأكثر مبيعًا', en: 'Best Sellers' },
+  'home.bestsellers.subtitle': { ar: 'الكتب الأكثر طلبًا هذا الأسبوع', en: 'Most requested books this week' },
+  'home.newreleases.title': { ar: 'أحدث الإصدارات', en: 'New Releases' },
+  'home.newreleases.subtitle': { ar: 'وصل حديثًا إلى مكتبتنا', en: 'Just arrived at our library' },
+  'home.authors.title': { ar: 'كتاب مميزون', en: 'Featured Authors' },
+  'home.authors.subtitle': { ar: 'أقلام شكّلت الأدب العربي', en: 'Pens that shaped Arabic literature' },
+  'home.offers.title': { ar: 'عروض خاصة', en: 'Special Offers' },
+  'home.offers.subtitle': { ar: 'وفّر أكثر على كتب مختارة', en: 'Save more on selected books' },
+  'home.newsletter.title': { ar: 'اشترك في نشرتنا البريدية', en: 'Subscribe to Our Newsletter' },
+  'home.newsletter.subtitle': { ar: 'كن أول من يعرف عن الإصدارات والعروض الجديدة', en: 'Be the first to know about new releases and offers' },
+  'home.newsletter.placeholder': { ar: 'بريدك الإلكتروني', en: 'Your email' },
+  'home.newsletter.button': { ar: 'اشترك', en: 'Subscribe' },
+
+  // Common
+  'common.addToCart': { ar: 'أضف إلى السلة', en: 'Add to Cart' },
+  'common.buyNow': { ar: 'اشترِ الآن', en: 'Buy Now' },
+  'common.viewAll': { ar: 'عرض الكل', en: 'View All' },
+  'common.viewDetails': { ar: 'عرض التفاصيل', en: 'View Details' },
+  'common.loading': { ar: 'جاري التحميل...', en: 'Loading...' },
+  'common.error': { ar: 'حدث خطأ', en: 'An error occurred' },
+  'common.retry': { ar: 'إعادة المحاولة', en: 'Retry' },
+  'common.empty': { ar: 'لا توجد نتائج', en: 'No results' },
+  'common.save': { ar: 'حفظ', en: 'Save' },
+  'common.cancel': { ar: 'إلغاء', en: 'Cancel' },
+  'common.delete': { ar: 'حذف', en: 'Delete' },
+  'common.edit': { ar: 'تعديل', en: 'Edit' },
+  'common.search': { ar: 'بحث', en: 'Search' },
+  'common.price': { ar: 'السعر', en: 'Price' },
+  'common.quantity': { ar: 'الكمية', en: 'Quantity' },
+  'common.total': { ar: 'الإجمالي', en: 'Total' },
+  'common.subtotal': { ar: 'المجموع الفرعي', en: 'Subtotal' },
+  'common.inStock': { ar: 'متوفر', en: 'In Stock' },
+  'common.outOfStock': { ar: 'غير متوفر', en: 'Out of Stock' },
+  'common.lowStock': { ar: 'كمية محدودة', en: 'Low Stock' },
+  'common.share': { ar: 'مشاركة', en: 'Share' },
+  'common.related': { ar: 'كتب ذات صلة', en: 'Related Books' },
+  'common.reviews': { ar: 'التقييمات', en: 'Reviews' },
+  'common.back': { ar: 'رجوع', en: 'Back' },
+
+  // Cart
+  'cart.title': { ar: 'سلة التسوق', en: 'Shopping Cart' },
+  'cart.empty': { ar: 'سلتك فارغة', en: 'Your cart is empty' },
+  'cart.empty.desc': { ar: 'ابدأ التسوق وأضف كتبك المفضلة', en: 'Start shopping and add your favorite books' },
+  'cart.continueShopping': { ar: 'متابعة التسوق', en: 'Continue Shopping' },
+  'cart.checkout': { ar: 'إتمام الشراء', en: 'Checkout' },
+  'cart.coupon': { ar: 'كود الخصم', en: 'Coupon Code' },
+  'cart.coupon.apply': { ar: 'تطبيق', en: 'Apply' },
+  'cart.shipping': { ar: 'الشحن', en: 'Shipping' },
+  'cart.discount': { ar: 'الخصم', en: 'Discount' },
+  'cart.tax': { ar: 'الضريبة', en: 'Tax' },
+  'cart.removeItem': { ar: 'إزالة', en: 'Remove' },
+  'cart.summary': { ar: 'ملخص الطلب', en: 'Order Summary' },
+
+  // Checkout
+  'checkout.title': { ar: 'إتمام الطلب', en: 'Checkout' },
+  'checkout.shipping': { ar: 'عنوان الشحن', en: 'Shipping Address' },
+  'checkout.payment': { ar: 'طريقة الدفع', en: 'Payment Method' },
+  'checkout.cod': { ar: 'الدفع عند الاستلام', en: 'Cash on Delivery' },
+  'checkout.online': { ar: 'دفع إلكتروني', en: 'Online Payment' },
+  'checkout.online.demo': { ar: '(وضع تجريبي)', en: '(Demo mode)' },
+  'checkout.placeOrder': { ar: 'تأكيد الطلب', en: 'Place Order' },
+  'checkout.fullName': { ar: 'الاسم الكامل', en: 'Full Name' },
+  'checkout.phone': { ar: 'رقم الهاتف', en: 'Phone Number' },
+  'checkout.governorate': { ar: 'المحافظة', en: 'Governorate' },
+  'checkout.city': { ar: 'المدينة', en: 'City' },
+  'checkout.district': { ar: 'الحي', en: 'District' },
+  'checkout.street': { ar: 'العنوان', en: 'Street Address' },
+  'checkout.notes': { ar: 'ملاحظات إضافية', en: 'Additional Notes' },
+  'checkout.loginRequired': { ar: 'يجب تسجيل الدخول لإتمام الطلب', en: 'Please log in to complete checkout' },
+  'checkout.guestOption': { ar: 'أو تابع كزائر', en: 'Or continue as guest' },
+
+  // Auth
+  'auth.login.title': { ar: 'تسجيل الدخول', en: 'Login' },
+  'auth.login.subtitle': { ar: 'مرحبًا بعودتك إلى مكتبة أفق', en: 'Welcome back to Moqtafa' },
+  'auth.signup.title': { ar: 'إنشاء حساب جديد', en: 'Create Account' },
+  'auth.signup.subtitle': { ar: 'انضم إلى مكتبة أفق اليوم', en: 'Join Moqtafa today' },
+  'auth.email': { ar: 'البريد الإلكتروني', en: 'Email' },
+  'auth.password': { ar: 'كلمة المرور', en: 'Password' },
+  'auth.confirmPassword': { ar: 'تأكيد كلمة المرور', en: 'Confirm Password' },
+  'auth.displayName': { ar: 'الاسم', en: 'Display Name' },
+  'auth.forgotPassword': { ar: 'نسيت كلمة المرور؟', en: 'Forgot password?' },
+  'auth.reset.title': { ar: 'استعادة كلمة المرور', en: 'Reset Password' },
+  'auth.reset.subtitle': { ar: 'أدخل بريدك لتصلك تعليمات الاستعادة', en: 'Enter your email to receive reset instructions' },
+  'auth.reset.button': { ar: 'إرسال', en: 'Send' },
+  'auth.noAccount': { ar: 'ليس لديك حساب؟', en: 'No account?' },
+  'auth.haveAccount': { ar: 'لديك حساب؟', en: 'Have an account?' },
+  'auth.loginButton': { ar: 'دخول', en: 'Login' },
+  'auth.signupButton': { ar: 'إنشاء حساب', en: 'Sign Up' },
+
+  // Account
+  'account.title': { ar: 'حسابي', en: 'My Account' },
+  'account.profile': { ar: 'الملف الشخصي', en: 'Profile' },
+  'account.orders': { ar: 'طلباتي', en: 'My Orders' },
+  'account.addresses': { ar: 'العناوين', en: 'Addresses' },
+  'account.wishlist': { ar: 'قائمة الرغبات', en: 'Wishlist' },
+  'account.orderHistory': { ar: 'سجل الطلبات', en: 'Order History' },
+  'account.noOrders': { ar: 'لا توجد طلبات بعد', en: 'No orders yet' },
+
+  // Footer
+  'footer.about': { ar: 'عن المكتبة', en: 'About' },
+  'footer.about.desc': { ar: 'مكتبة أفق وجهتك الأولى للكتب العربية والإصدارات المميزة، نقدم مجموعة منتقاة من أعظم الأعمال الأدبية والفكرية.', en: 'Moqtafa is your premier destination for Arabic books and special editions, offering a curated collection of the greatest literary and intellectual works.' },
+  'footer.links': { ar: 'روابط سريعة', en: 'Quick Links' },
+  'footer.contact': { ar: 'تواصل معنا', en: 'Contact' },
+  'footer.rights': { ar: 'جميع الحقوق محفوظة', en: 'All rights reserved' },
+  'footer.help': { ar: 'المساعدة', en: 'Help' },
+
+  // Announcement
+  'announce.shipping': { ar: 'شحن مجاني للطلبات فوق ٥٠٠ ج.م — استخدم كود AFQ10 لخصم ١٠٪', en: 'Free shipping over 500 EGP — Use code AFQ10 for 10% off' },
+
+  // Catalog
+  'catalog.title': { ar: 'كل الكتب', en: 'All Books' },
+  'catalog.filters': { ar: 'التصفية', en: 'Filters' },
+  'catalog.sort': { ar: 'ترتيب', en: 'Sort' },
+  'catalog.sort.popular': { ar: 'الأكثر شعبية', en: 'Most Popular' },
+  'catalog.sort.newest': { ar: 'الأحدث', en: 'Newest' },
+  'catalog.sort.priceLow': { ar: 'السعر: الأقل', en: 'Price: Low to High' },
+  'catalog.sort.priceHigh': { ar: 'السعر: الأعلى', en: 'Price: High to Low' },
+  'catalog.sort.rating': { ar: 'الأعلى تقييمًا', en: 'Highest Rated' },
+  'catalog.grid': { ar: 'شبكة', en: 'Grid' },
+  'catalog.list': { ar: 'قائمة', en: 'List' },
+  'catalog.loadMore': { ar: 'تحميل المزيد', en: 'Load More' },
+  'catalog.noResults': { ar: 'لم نجد كتبًا مطابقة لبحثك', en: 'No books found matching your search' },
+  'catalog.searchPlaceholder': { ar: 'ابحث بالعنوان أو المؤلف أو الـ ISBN...', en: 'Search by title, author, or ISBN...' },
+  'catalog.filterCategory': { ar: 'التصنيف', en: 'Category' },
+  'catalog.filterAuthor': { ar: 'المؤلف', en: 'Author' },
+  'catalog.filterLanguage': { ar: 'اللغة', en: 'Language' },
+  'catalog.filterPrice': { ar: 'السعر', en: 'Price' },
+  'catalog.filterYear': { ar: 'سنة النشر', en: 'Publication Year' },
+  'catalog.filterRating': { ar: 'التقييم', en: 'Rating' },
+  'catalog.filterAvailability': { ar: 'التوفر', en: 'Availability' },
+  'catalog.clearFilters': { ar: 'مسح التصفية', en: 'Clear Filters' },
+  'catalog.results': { ar: 'نتيجة', en: 'results' },
+};
+
+export function t(key: string, lang: Language): string {
+  const entry = translations[key];
+  if (!entry) return key;
+  return entry[lang];
+}
