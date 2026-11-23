@@ -95,9 +95,9 @@ export const translations: Dict = {
 
   // Auth
   'auth.login.title': { ar: 'تسجيل الدخول', en: 'Login' },
-  'auth.login.subtitle': { ar: 'مرحبًا بعودتك إلى مكتبة أفق', en: 'Welcome back to Moqtafa' },
+  'auth.login.subtitle': { ar: 'مرحبًا بعودتك إلى الكتب', en: 'Welcome back to Al Kotob' },
   'auth.signup.title': { ar: 'إنشاء حساب جديد', en: 'Create Account' },
-  'auth.signup.subtitle': { ar: 'انضم إلى مكتبة أفق اليوم', en: 'Join Moqtafa today' },
+  'auth.signup.subtitle': { ar: 'انضم إلى الكتب اليوم', en: 'Join Al Kotob today' },
   'auth.email': { ar: 'البريد الإلكتروني', en: 'Email' },
   'auth.password': { ar: 'كلمة المرور', en: 'Password' },
   'auth.confirmPassword': { ar: 'تأكيد كلمة المرور', en: 'Confirm Password' },
@@ -122,7 +122,7 @@ export const translations: Dict = {
 
   // Footer
   'footer.about': { ar: 'عن المكتبة', en: 'About' },
-  'footer.about.desc': { ar: 'مكتبة أفق وجهتك الأولى للكتب العربية والإصدارات المميزة، نقدم مجموعة منتقاة من أعظم الأعمال الأدبية والفكرية.', en: 'Moqtafa is your premier destination for Arabic books and special editions, offering a curated collection of the greatest literary and intellectual works.' },
+  'footer.about.desc': { ar: 'الكتب وجهتك الأولى للكتب العربية والإصدارات المميزة، نقدم مجموعة منتقاة من أعظم الأعمال الأدبية والفكرية.', en: 'Al Kotob is your premier destination for Arabic books and special editions, offering a curated collection of the greatest literary and intellectual works.' },
   'footer.links': { ar: 'روابط سريعة', en: 'Quick Links' },
   'footer.contact': { ar: 'تواصل معنا', en: 'Contact' },
   'footer.rights': { ar: 'جميع الحقوق محفوظة', en: 'All rights reserved' },

@@ -70,8 +70,8 @@ export function Navbar() {
                 <BookOpen className="h-6 w-6" />
               </div>
               <div className="hidden sm:block">
-                <span className="font-serif text-lg font-bold text-navy-900">مكتبة أفق</span>
-                <span className="block text-[10px] text-gold-600 -mt-1">MOQTAFAA BOOKSTORE</span>
+                <span className="font-serif text-lg font-bold text-navy-900">الكتب</span>
+                <span className="block text-[10px] text-gold-600 -mt-1">AL KOTOB BOOKSTORE</span>
               </div>
             </Link>
 

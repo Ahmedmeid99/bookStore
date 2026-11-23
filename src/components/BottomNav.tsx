@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { LayoutGrid, Heart, ShoppingCart, Search, X, Phone, Mail, ArrowLeft, ArrowRight, Sparkles, SlidersHorizontal, BookOpen } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
-import { useAuth } from '@/contexts/AuthContext';
+import { useWishlist } from '@/contexts/WishlistContext';
 import { storeApi } from '@/lib/api';
 import type { Category, Author } from '@/types/database';
 
@@ -18,14 +18,13 @@ function WhatsAppIcon({ className = 'h-5 w-5' }: { className?: string }) {
 export function BottomNav() {
   const { lang, t } = useLanguage();
   const { itemCount, setCartOpen } = useCart();
-  const { user } = useAuth();
+  const { wishlistCount } = useWishlist();
   const location = useLocation();
   const navigate = useNavigate();
 
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [contactSheetOpen, setContactSheetOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [wishlistCount, setWishlistCount] = useState<number>(0);
   const [categories, setCategories] = useState<Category[]>([]);
   const [authors, setAuthors] = useState<Author[]>([]);
 
@@ -38,17 +37,6 @@ export function BottomNav() {
       })
       .catch(() => {});
   }, []);
-
-  // Load wishlist count if user is logged in
-  useEffect(() => {
-    if (user) {
-      storeApi.wishlist.list()
-        .then((items) => setWishlistCount(items.length))
-        .catch(() => setWishlistCount(0));
-    } else {
-      setWishlistCount(0);
-    }
-  }, [user, location.pathname]);
 
   // Close modals on route change
   useEffect(() => {
@@ -311,7 +299,7 @@ export function BottomNav() {
             <div className="flex items-center justify-between pb-2 border-b border-ivory-200 dark:border-navy-800">
               <div>
                 <h3 className="font-serif font-bold text-lg text-navy-900 dark:text-ivory-50">
-                  {lang === 'ar' ? 'تواصل مع مكتبة أفق' : 'Contact Moqtafa'}
+                  {lang === 'ar' ? 'تواصل مع الكتب' : 'Contact Al Kotob'}
                 </h3>
                 <p className="text-xs text-navy-500 dark:text-ivory-300 mt-0.5">
                   {lang === 'ar' ? 'يسعدنا الرد على جميع استفساراتكم واقتراحاتكم' : 'We are here to help with your inquiries'}
@@ -331,8 +319,8 @@ export function BottomNav() {
             <a
               href={`https://wa.me/201001234567?text=${encodeURIComponent(
                 lang === 'ar'
-                  ? 'مرحبًا مكتبة أفق، أرغب في الاستفسار عن خدمة أو كتاب.'
-                  : 'Hello Moqtafa Bookstore, I would like to inquire about a book.'
+                  ? 'مرحبًا الكتب، أرغب في الاستفسار عن خدمة أو كتاب.'
+                  : 'Hello Al Kotob Bookstore, I would like to inquire about a book.'
               )}`}
               target="_blank"
               rel="noopener noreferrer"

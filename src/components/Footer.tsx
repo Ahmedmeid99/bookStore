@@ -55,7 +55,7 @@ export function Footer() {
                 <BookOpen className="h-6 w-6" />
               </div>
               <div>
-                <span className="font-serif text-lg font-bold text-ivory-50">مكتبة أفق</span>
+                <span className="font-serif text-lg font-bold text-ivory-50">الكتب</span>
               </div>
             </div>
             <p className="text-sm text-ivory-200 leading-relaxed">{t('footer.about.desc')}</p>
@@ -119,7 +119,7 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-navy-700">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-ivory-300">
-          <p>© {new Date().getFullYear()} مكتبة أفق — {t('footer.rights')}</p>
+          <p>© {new Date().getFullYear()} الكتب — {t('footer.rights')}</p>
           <p>{lang === 'ar' ? 'صُنع بحب في مصر' : 'Made with love in Egypt'}</p>
         </div>
       </div>

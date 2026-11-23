@@ -3,6 +3,7 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ToastProvider } from '@/contexts/ToastContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { CartProvider } from '@/contexts/CartContext';
+import { WishlistProvider } from '@/contexts/WishlistContext';
 import { Layout } from '@/components/Layout';
 import { HomePage } from '@/pages/HomePage';
 import { CatalogPage } from '@/pages/CatalogPage';
@@ -25,8 +26,9 @@ export default function App() {
       <LanguageProvider>
         <ToastProvider>
           <AuthProvider>
-            <CartProvider>
-              <Routes>
+            <WishlistProvider>
+              <CartProvider>
+                <Routes>
                 <Route element={<Layout />}>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/catalog" element={<CatalogPage />} />
@@ -53,8 +55,9 @@ export default function App() {
                     <Route path="customers" element={<AdminCustomers />} />
                   </Route>
                 </Route>
-              </Routes>
-            </CartProvider>
+                </Routes>
+              </CartProvider>
+            </WishlistProvider>
           </AuthProvider>
         </ToastProvider>
       </LanguageProvider>
