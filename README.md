@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-The storefront runs at `http://localhost:5173` and uses `http://localhost:5095/api` by default.
+The storefront runs at `http://localhost:5173` and reads the ASP.NET API URL from `VITE_API_URL`.
 
 Optional environment overrides:
 

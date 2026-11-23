@@ -2,8 +2,9 @@ import type {
   Address, Author, Book, CartItem, Category, Order, Profile, Review,
 } from '@/types/database';
 
-const API_BASE = (import.meta.env.VITE_API_URL || 'https://bookstore-storge.runasp.net/api').replace(/\/+$/, '');
-// Local development: http://localhost:5095/api
+const apiUrl = import.meta.env.VITE_API_URL?.trim();
+if (!apiUrl) throw new Error('VITE_API_URL is not configured');
+const API_BASE = apiUrl.replace(/\/+$/, '');
 const API_ORIGIN = new URL(API_BASE, window.location.origin).origin;
 const TOKEN_KEY = 'bookstore.accessToken';
 let refreshPromise: Promise<string> | null = null;
