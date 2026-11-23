@@ -2,7 +2,7 @@ import type {
   Address, Author, Book, CartItem, Category, Order, Profile, Review,
 } from '@/types/database';
 
-const apiUrl = import.meta.env.VITE_API_URL?.trim();
+const apiUrl = import.meta.env.VITE_API_URL;
 if (!apiUrl) throw new Error('VITE_API_URL is not configured');
 const API_BASE = apiUrl.replace(/\/+$/, '');
 const API_ORIGIN = new URL(API_BASE, window.location.origin).origin;
