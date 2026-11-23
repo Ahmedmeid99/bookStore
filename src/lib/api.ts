@@ -211,6 +211,12 @@ export const storeApi = {
   categories: async () => (await request<ApiCategory[]>('/storefront/categories')).map(mapCategory),
   authors: async () => (await request<ApiAuthor[]>('/storefront/authors')).map(mapAuthor),
   auth: {
+    restore: async () => {
+      const accessToken = await refreshAccessToken();
+      authToken.set(accessToken);
+      const profile = mapProfile(await request<ApiProfile>('/customer/profile'));
+      return { token: accessToken, profile };
+    },
     login: async (email: string, password: string) => {
       const result = await request<ApiAuth>('/auth/storefront-login', { method: 'POST', ...body({ email, password }) });
       authToken.set(result.accessToken);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Sparkles, BookOpen, Feather, Brain, Scroll, TrendingUp } from 'lucide-react';
+import { ArrowLeft, Sparkles, BookOpen, Feather, Brain, Scroll, TrendingUp } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { storeApi } from '@/lib/api';
 import { BookCard } from '@/components/BookCard';

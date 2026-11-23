@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {
   Search, ShoppingCart, Heart, User, Menu, X,
-  BookOpen, ChevronDown, LogOut, LayoutDashboard, Globe,
+  BookOpen, ChevronDown, LogOut, LayoutDashboard,
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
@@ -11,7 +11,7 @@ import { storeApi } from '@/lib/api';
 import type { Category } from '@/types/database';
 
 export function Navbar() {
-  const { lang, setLang, t } = useLanguage();
+  const { lang, t } = useLanguage();
   const { itemCount, setCartOpen } = useCart();
   const { user, profile, isAdmin, signOut } = useAuth();
   const navigate = useNavigate();
