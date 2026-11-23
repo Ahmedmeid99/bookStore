@@ -2,7 +2,7 @@ import type {
   Address, Author, Book, CartItem, Category, Order, Profile, Review,
 } from '@/types/database';
 
-const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:5095/api').replace(/\/$/, '');
+const API_BASE = (import.meta.env.VITE_API_URL).replace(/\/$/, '');
 const API_ORIGIN = new URL(API_BASE, window.location.origin).origin;
 const TOKEN_KEY = 'bookstore.accessToken';
 let refreshPromise: Promise<string> | null = null;
