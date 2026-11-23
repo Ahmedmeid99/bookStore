@@ -48,12 +48,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let active = true;
     const token = authToken.get();
-    if (!token) {
-      setLoading(false);
-      return () => { active = false; };
-    }
-    storeApi.auth.profile()
-      .then((nextProfile) => { if (active) applyAuth(authToken.get() ?? token, nextProfile); })
+    const sessionRequest = token
+      ? storeApi.auth.profile().then((nextProfile) => ({ token: authToken.get() ?? token, profile: nextProfile }))
+      : storeApi.auth.restore();
+    sessionRequest
+      .then((result) => { if (active) applyAuth(result.token, result.profile); })
       .catch(() => { if (active) clearAuth(); })
       .finally(() => { if (active) setLoading(false); });
     const unauthorized = () => { if (active) clearAuth(); };
