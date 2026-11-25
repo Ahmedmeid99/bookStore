@@ -8,6 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/contexts/ToastContext';
+import { useWishlist } from '@/contexts/WishlistContext';
 import { storeApi } from '@/lib/api';
 import { formatPrice, getEffectivePrice, getDiscountPercent } from '@/lib/utils';
 import { BookCover } from '@/components/BookCover';
@@ -23,6 +24,7 @@ export function BookDetailsPage() {
   const { addItem } = useCart();
   const { user } = useAuth();
   const { success, warning, error: showError } = useToast();
+  const { addToWishlist, removeFromWishlist } = useWishlist();
 
   const [book, setBook] = useState<Book | null>(null);
   const [related, setRelated] = useState<Book[]>([]);
@@ -100,15 +102,16 @@ export function BookDetailsPage() {
 
     try {
       if (inWishlist) {
-        await storeApi.wishlist.remove(book.id);
         setInWishlist(false);
+        await removeFromWishlist(book.id);
         success(lang === 'ar' ? 'تمت الإزالة من المفضلة' : 'Removed from wishlist');
       } else {
-        await storeApi.wishlist.add(book.id);
         setInWishlist(true);
+        await addToWishlist(book.id);
         success(lang === 'ar' ? 'تمت الإضافة إلى المفضلة' : 'Added to wishlist');
       }
     } catch (error) {
+      setInWishlist((current) => !current);
       showError(error instanceof Error ? error.message : (lang === 'ar' ? 'تعذّر تحديث المفضلة' : 'Failed to update wishlist'));
     }
   };
@@ -321,7 +324,17 @@ export function BookDetailsPage() {
             <dl className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {book.publisher && <DetailRow icon={Building2} label={lang === 'ar' ? 'الناشر' : 'Publisher'} value={book.publisher} />}
               {book.publication_year && <DetailRow icon={Calendar} label={lang === 'ar' ? 'سنة النشر' : 'Published'} value={String(book.publication_year)} />}
-              {book.language && <DetailRow icon={Globe} label={lang === 'ar' ? 'اللغة' : 'Language'} value={book.language === 'ara' ? (lang === 'ar' ? 'العربية' : 'Arabic') : book.language} />}
+              {book.language && (
+                <DetailRow
+                  icon={Globe}
+                  label={lang === 'ar' ? 'اللغة' : 'Language'}
+                  value={book.language === 'ar'
+                    ? (lang === 'ar' ? 'العربية' : 'Arabic')
+                    : book.language === 'en'
+                    ? (lang === 'ar' ? 'الإنجليزية' : 'English')
+                    : book.language}
+                />
+              )}
               {book.page_count && <DetailRow icon={FileText} label={lang === 'ar' ? 'عدد الصفحات' : 'Pages'} value={String(book.page_count)} />}
               {book.isbn_10 && <DetailRow icon={Hash} label="ISBN-10" value={book.isbn_10} />}
               {book.isbn_13 && <DetailRow icon={Hash} label="ISBN-13" value={book.isbn_13} />}

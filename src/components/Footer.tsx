@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Send } from 'lucide-react';
+import { BookOpen, Phone, Facebook, Linkedin, Send } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/contexts/ToastContext';
 import { useState } from 'react';
@@ -55,19 +55,16 @@ export function Footer() {
                 <BookOpen className="h-6 w-6" />
               </div>
               <div>
-                <span className="font-serif text-lg font-bold text-ivory-50">مكتبة أفق</span>
+                <span className="font-serif text-lg font-bold text-ivory-50">{lang === 'ar' ? 'متجر الكتب' : 'Book Store'}</span>
               </div>
             </div>
             <p className="text-sm text-ivory-200 leading-relaxed">{t('footer.about.desc')}</p>
             <div className="flex gap-3 pt-2">
-              <a href="#" className="rounded-lg bg-navy-700 p-2 text-ivory-200 transition-colors hover:bg-navy-600 hover:text-gold-400" aria-label="Facebook">
+              <a href="https://www.facebook.com/profile.php?id=61591450438439" target="_blank" rel="noopener noreferrer" className="rounded-lg bg-navy-700 p-2 text-ivory-200 transition-colors hover:bg-navy-600 hover:text-gold-400" aria-label="Facebook">
                 <Facebook className="h-4 w-4" />
               </a>
-              <a href="#" className="rounded-lg bg-navy-700 p-2 text-ivory-200 transition-colors hover:bg-navy-600 hover:text-gold-400" aria-label="Twitter">
-                <Twitter className="h-4 w-4" />
-              </a>
-              <a href="#" className="rounded-lg bg-navy-700 p-2 text-ivory-200 transition-colors hover:bg-navy-600 hover:text-gold-400" aria-label="Instagram">
-                <Instagram className="h-4 w-4" />
+              <a href="https://www.linkedin.com/in/ahmed-eid-267543225/" target="_blank" rel="noopener noreferrer" className="rounded-lg bg-navy-700 p-2 text-ivory-200 transition-colors hover:bg-navy-600 hover:text-gold-400" aria-label="LinkedIn">
+                <Linkedin className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -99,17 +96,17 @@ export function Footer() {
           <div>
             <h4 className="font-semibold text-gold-400 mb-3">{t('footer.contact')}</h4>
             <ul className="space-y-3 text-sm">
-              <li className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 text-gold-400 shrink-0 mt-0.5" />
-                <span className="text-ivory-200">{lang === 'ar' ? '١٢ شارع الجمهورية، وسط البلد، القاهرة' : '12 Gomhuria St, Downtown, Cairo'}</span>
-              </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-gold-400 shrink-0" />
-                <span className="text-ivory-200" dir="ltr">+20 100 123 4567</span>
+                <a href="tel:+201095814411" className="text-ivory-200 transition-colors hover:text-gold-400" dir="ltr">+20 109 581 4411</a>
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-gold-400 shrink-0" />
-                <span className="text-ivory-200" dir="ltr">info@moqtafa.com</span>
+                <Linkedin className="h-4 w-4 text-gold-400 shrink-0" />
+                <a href="https://www.linkedin.com/in/ahmed-eid-267543225/" target="_blank" rel="noopener noreferrer" className="text-ivory-200 transition-colors hover:text-gold-400">LinkedIn</a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Facebook className="h-4 w-4 text-gold-400 shrink-0" />
+                <a href="https://www.facebook.com/profile.php?id=61591450438439" target="_blank" rel="noopener noreferrer" className="text-ivory-200 transition-colors hover:text-gold-400">Facebook</a>
               </li>
             </ul>
           </div>
@@ -119,7 +116,7 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-navy-700">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-ivory-300">
-          <p>© {new Date().getFullYear()} مكتبة أفق — {t('footer.rights')}</p>
+          <p>© {new Date().getFullYear()} {lang === 'ar' ? 'متجر الكتب' : 'Book Store'} — {t('footer.rights')}</p>
           <p>{lang === 'ar' ? 'صُنع بحب في مصر' : 'Made with love in Egypt'}</p>
         </div>
       </div>

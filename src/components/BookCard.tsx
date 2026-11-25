@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, Heart, Star } from 'lucide-react';
 import { BookCover } from './BookCover';
@@ -5,8 +6,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/contexts/ToastContext';
+import { useWishlist } from '@/contexts/WishlistContext';
 import { formatPrice, getEffectivePrice, getDiscountPercent } from '@/lib/utils';
-import { storeApi } from '@/lib/api';
 import type { Book } from '@/types/database';
 
 interface BookCardProps {
@@ -19,6 +20,9 @@ export function BookCard({ book, variant = 'grid' }: BookCardProps) {
   const { addItem } = useCart();
   const { user } = useAuth();
   const { success, warning } = useToast();
+  const { isInWishlist, addToWishlist, removeFromWishlist } = useWishlist();
+  const [wishlistPending, setWishlistPending] = useState(false);
+  const inWishlist = isInWishlist(book.id);
   const discount = getDiscountPercent(book);
   const price = getEffectivePrice(book);
   const authorName = book.authors?.[0]
@@ -46,11 +50,20 @@ export function BookCard({ book, variant = 'grid' }: BookCardProps) {
       warning('يجب تسجيل الدخول أولاً');
       return;
     }
+    if (wishlistPending) return;
+    setWishlistPending(true);
     try {
-      await storeApi.wishlist.add(book.id);
-      success('تمت الإضافة إلى المفضلة');
+      if (inWishlist) {
+        await removeFromWishlist(book.id);
+        success(lang === 'ar' ? 'تمت الإزالة من المفضلة' : 'Removed from wishlist');
+      } else {
+        await addToWishlist(book.id);
+        success(lang === 'ar' ? 'تمت الإضافة إلى المفضلة' : 'Added to wishlist');
+      }
     } catch (error) {
-      warning(error instanceof Error ? error.message : 'تعذّرت الإضافة إلى المفضلة');
+      warning(error instanceof Error ? error.message : (lang === 'ar' ? 'تعذّر تحديث المفضلة' : 'Failed to update wishlist'));
+    } finally {
+      setWishlistPending(false);
     }
   };
 
@@ -120,10 +133,12 @@ export function BookCard({ book, variant = 'grid' }: BookCardProps) {
         )}
         <button
           onClick={handleWishlist}
-          className="absolute bottom-2 left-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-navy-600 opacity-0 shadow-sm transition-all hover:text-burgundy-600 group-hover:opacity-100"
+          disabled={wishlistPending}
+          className={`absolute bottom-2 left-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-sm transition-[color,opacity,transform] active:scale-[0.96] disabled:opacity-60 md:opacity-0 md:group-hover:opacity-100 ${inWishlist ? 'text-burgundy-600 opacity-100' : 'text-navy-600 opacity-100 hover:text-burgundy-600'}`}
           aria-label={t('nav.wishlist')}
+          aria-pressed={inWishlist}
         >
-          <Heart className="h-4 w-4" />
+          <Heart className={`h-4 w-4 ${inWishlist ? 'fill-current' : ''}`} />
         </button>
       </div>
 

@@ -93,5 +93,5 @@ ON CONFLICT DO NOTHING;
 
 -- Coupon
 INSERT INTO public.coupons (code, description_ar, discount_type, discount_value, min_order_amount, active, starts_at, expires_at)
-VALUES ('AFQ10', 'خصم 10٪ على كل الطلبات', 'percentage', 10, 0, true, now(), now() + interval '1 year')
+VALUES ('WELCOME10', 'خصم 10٪ على كل الطلبات', 'percentage', 10, 0, true, now(), now() + interval '1 year')
 ON CONFLICT (code) DO NOTHING;

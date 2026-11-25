@@ -1,23 +1,34 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ToastProvider } from '@/contexts/ToastContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { CartProvider } from '@/contexts/CartContext';
+import { WishlistProvider } from '@/contexts/WishlistContext';
 import { Layout } from '@/components/Layout';
-import { HomePage } from '@/pages/HomePage';
-import { CatalogPage } from '@/pages/CatalogPage';
-import { BookDetailsPage } from '@/pages/BookDetailsPage';
-import { CartPage } from '@/pages/CartPage';
-import { CheckoutPage } from '@/pages/CheckoutPage';
-import { OrderSuccessPage } from '@/pages/OrderSuccessPage';
-import { LoginPage } from '@/pages/LoginPage';
-import { SignupPage } from '@/pages/SignupPage';
-import { WishlistPage } from '@/pages/WishlistPage';
-import { AccountPage, ProfileTab, OrdersTab, AddressesTab, WishlistTab } from '@/pages/AccountPage';
-import {
-  AdminLayout, AdminDashboard, AdminBooks, AdminAuthors,
-  AdminCategories, AdminOrders, AdminCoupons, AdminCustomers,
-} from '@/pages/AdminPage';
+
+const HomePage = lazy(() => import('@/pages/HomePage').then((module) => ({ default: module.HomePage })));
+const CatalogPage = lazy(() => import('@/pages/CatalogPage').then((module) => ({ default: module.CatalogPage })));
+const BookDetailsPage = lazy(() => import('@/pages/BookDetailsPage').then((module) => ({ default: module.BookDetailsPage })));
+const CartPage = lazy(() => import('@/pages/CartPage').then((module) => ({ default: module.CartPage })));
+const CheckoutPage = lazy(() => import('@/pages/CheckoutPage').then((module) => ({ default: module.CheckoutPage })));
+const OrderSuccessPage = lazy(() => import('@/pages/OrderSuccessPage').then((module) => ({ default: module.OrderSuccessPage })));
+const LoginPage = lazy(() => import('@/pages/LoginPage').then((module) => ({ default: module.LoginPage })));
+const SignupPage = lazy(() => import('@/pages/SignupPage').then((module) => ({ default: module.SignupPage })));
+const WishlistPage = lazy(() => import('@/pages/WishlistPage').then((module) => ({ default: module.WishlistPage })));
+const AccountPage = lazy(() => import('@/pages/AccountPage').then((module) => ({ default: module.AccountPage })));
+const ProfileTab = lazy(() => import('@/pages/AccountPage').then((module) => ({ default: module.ProfileTab })));
+const OrdersTab = lazy(() => import('@/pages/AccountPage').then((module) => ({ default: module.OrdersTab })));
+const AddressesTab = lazy(() => import('@/pages/AccountPage').then((module) => ({ default: module.AddressesTab })));
+const WishlistTab = lazy(() => import('@/pages/AccountPage').then((module) => ({ default: module.WishlistTab })));
+const AdminLayout = lazy(() => import('@/pages/AdminPage').then((module) => ({ default: module.AdminLayout })));
+const AdminDashboard = lazy(() => import('@/pages/AdminPage').then((module) => ({ default: module.AdminDashboard })));
+const AdminBooks = lazy(() => import('@/pages/AdminPage').then((module) => ({ default: module.AdminBooks })));
+const AdminAuthors = lazy(() => import('@/pages/AdminPage').then((module) => ({ default: module.AdminAuthors })));
+const AdminCategories = lazy(() => import('@/pages/AdminPage').then((module) => ({ default: module.AdminCategories })));
+const AdminOrders = lazy(() => import('@/pages/AdminPage').then((module) => ({ default: module.AdminOrders })));
+const AdminCoupons = lazy(() => import('@/pages/AdminPage').then((module) => ({ default: module.AdminCoupons })));
+const AdminCustomers = lazy(() => import('@/pages/AdminPage').then((module) => ({ default: module.AdminCustomers })));
 
 export default function App() {
   return (
@@ -25,9 +36,11 @@ export default function App() {
       <LanguageProvider>
         <ToastProvider>
           <AuthProvider>
-            <CartProvider>
-              <Routes>
-                <Route element={<Layout />}>
+            <WishlistProvider>
+              <CartProvider>
+                <Suspense fallback={<div className="min-h-[50vh] bg-ivory-50" aria-busy="true" />}>
+                  <Routes>
+                  <Route element={<Layout />}>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/catalog" element={<CatalogPage />} />
                   <Route path="/book/:slug" element={<BookDetailsPage />} />
@@ -52,9 +65,11 @@ export default function App() {
                     <Route path="coupons" element={<AdminCoupons />} />
                     <Route path="customers" element={<AdminCustomers />} />
                   </Route>
-                </Route>
-              </Routes>
-            </CartProvider>
+                  </Route>
+                  </Routes>
+                </Suspense>
+              </CartProvider>
+            </WishlistProvider>
           </AuthProvider>
         </ToastProvider>
       </LanguageProvider>
