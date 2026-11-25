@@ -26,7 +26,7 @@ export const translations: Dict = {
   'home.bestsellers.subtitle': { ar: 'الكتب الأكثر طلبًا هذا الأسبوع', en: 'Most requested books this week' },
   'home.newreleases.title': { ar: 'أحدث الإصدارات', en: 'New Releases' },
   'home.newreleases.subtitle': { ar: 'وصل حديثًا إلى مكتبتنا', en: 'Just arrived at our library' },
-  'home.authors.title': { ar: 'كتاب مميزون', en: 'Featured Authors' },
+  'home.authors.title': { ar: 'كُتّاب مميزون', en: 'Featured Authors' },
   'home.authors.subtitle': { ar: 'أقلام شكّلت الأدب العربي', en: 'Pens that shaped Arabic literature' },
   'home.offers.title': { ar: 'عروض خاصة', en: 'Special Offers' },
   'home.offers.subtitle': { ar: 'وفّر أكثر على كتب مختارة', en: 'Save more on selected books' },
@@ -129,7 +129,7 @@ export const translations: Dict = {
   'footer.help': { ar: 'المساعدة', en: 'Help' },
 
   // Announcement
-  'announce.shipping': { ar: 'شحن مجاني للطلبات فوق ٥٠٠ ج.م — استخدم كود AFQ10 لخصم ١٠٪', en: 'Free shipping over 500 EGP — Use code AFQ10 for 10% off' },
+  'announce.shipping': { ar: 'شحن مجاني للطلبات فوق ٥٠٠ ج.م — استخدم كود WELCOME10 لخصم ١٠٪', en: 'Free shipping over 500 EGP — Use code WELCOME10 for 10% off' },
 
   // Catalog
   'catalog.title': { ar: 'كل الكتب', en: 'All Books' },

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutGrid, Heart, ShoppingCart, Search, X, Phone, Mail, ArrowLeft, ArrowRight, Sparkles, SlidersHorizontal, BookOpen } from 'lucide-react';
+import { LayoutGrid, Heart, ShoppingCart, Search, X, Phone, Facebook, Linkedin, ArrowLeft, ArrowRight, Sparkles, SlidersHorizontal, BookOpen } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
 import { useWishlist } from '@/contexts/WishlistContext';
@@ -103,7 +103,7 @@ export function BottomNav() {
                 strokeWidth={isWishlistActive ? 2.3 : 1.8}
                 fill={isWishlistActive ? 'currentColor' : 'none'}
               />
-              <span className="absolute -top-1 -end-2 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-burgundy-600 text-[10px] font-bold text-white px-1 shadow-sm ring-1 ring-white">
+              <span className="absolute -top-1 -end-2 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-burgundy-600 text-[10px] font-bold tabular-nums text-white px-1 shadow-sm ring-1 ring-white">
                 {wishlistCount}
               </span>
             </div>
@@ -119,12 +119,12 @@ export function BottomNav() {
           <button
             type="button"
             onClick={() => setCartOpen(true)}
-            className="flex-1 flex flex-col items-center justify-center py-1.5 transition-colors text-navy-600 dark:text-ivory-300 hover:text-navy-900 relative active:scale-95"
+            className="flex-1 flex flex-col items-center justify-center py-1.5 transition-colors text-navy-600 dark:text-ivory-300 hover:text-navy-900 relative active:scale-[0.96]"
             aria-label={t('nav.cart')}
           >
             <div className="relative">
               <ShoppingCart className="h-5 w-5 mb-1 shrink-0" strokeWidth={1.8} />
-              <span className="absolute -top-1 -end-2 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-burgundy-600 text-[10px] font-bold text-white px-1 shadow-sm ring-1 ring-white">
+              <span className="absolute -top-1 -end-2 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-burgundy-600 text-[10px] font-bold tabular-nums text-white px-1 shadow-sm ring-1 ring-white">
                 {itemCount}
               </span>
             </div>
@@ -317,7 +317,7 @@ export function BottomNav() {
 
             {/* WhatsApp - Primary Action */}
             <a
-              href={`https://wa.me/201001234567?text=${encodeURIComponent(
+              href={`https://wa.me/201095814411?text=${encodeURIComponent(
                 lang === 'ar'
                   ? 'مرحبًا الكتب، أرغب في الاستفسار عن خدمة أو كتاب.'
                   : 'Hello Al Kotob Bookstore, I would like to inquire about a book.'
@@ -344,7 +344,7 @@ export function BottomNav() {
 
             {/* Direct Phone Call */}
             <a
-              href="tel:+201001234567"
+              href="tel:+201095814411"
               className="flex items-center justify-between rounded-2xl bg-ivory-50 dark:bg-navy-800/60 border border-ivory-200 dark:border-navy-700 p-3.5 transition-transform active:scale-[0.98] hover:border-gold-400"
             >
               <div className="flex items-center gap-3">
@@ -356,33 +356,31 @@ export function BottomNav() {
                     {lang === 'ar' ? 'اتصال هاتفي مباشر' : 'Direct Phone Call'}
                   </h4>
                   <p className="text-xs text-navy-500 dark:text-ivory-400" dir="ltr">
-                    +20 100 123 4567
+                    +20 109 581 4411
                   </p>
                 </div>
               </div>
               <ArrowIcon className="h-4 w-4 text-navy-400" />
             </a>
 
-            {/* Email */}
-            <a
-              href="mailto:info@moqtafa.com"
-              className="flex items-center justify-between rounded-2xl bg-ivory-50 dark:bg-navy-800/60 border border-ivory-200 dark:border-navy-700 p-3.5 transition-transform active:scale-[0.98] hover:border-gold-400"
-            >
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-navy-800 text-gold-400">
-                  <Mail className="h-5 w-5" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-navy-900 dark:text-ivory-100 text-sm">
-                    {lang === 'ar' ? 'البريد الإلكتروني' : 'Email Support'}
-                  </h4>
-                  <p className="text-xs text-navy-500 dark:text-ivory-400" dir="ltr">
-                    info@moqtafa.com
-                  </p>
-                </div>
-              </div>
-              <ArrowIcon className="h-4 w-4 text-navy-400" />
-            </a>
+            <div className="grid grid-cols-2 gap-3">
+              <a
+                href="https://www.facebook.com/profile.php?id=61591450438439"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-ivory-200 bg-ivory-50 px-3 text-sm font-semibold text-navy-800 transition-colors hover:border-gold-400 dark:border-navy-700 dark:bg-navy-800/60 dark:text-ivory-100"
+              >
+                <Facebook className="h-5 w-5" /> Facebook
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ahmed-eid-267543225/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-ivory-200 bg-ivory-50 px-3 text-sm font-semibold text-navy-800 transition-colors hover:border-gold-400 dark:border-navy-700 dark:bg-navy-800/60 dark:text-ivory-100"
+              >
+                <Linkedin className="h-5 w-5" /> LinkedIn
+              </a>
+            </div>
           </div>
         </div>
       )}

@@ -177,7 +177,7 @@ function resolveMediaUrl(value: string | null): string | null {
 
 export interface CatalogRequest {
   search?: string; category?: string; authorId?: string; language?: string; minPrice?: string; maxPrice?: string;
-  year?: string; minRating?: string; inStock?: boolean; sort?: string; pageNumber?: number; pageSize?: number;
+  year?: string; minRating?: string; inStock?: boolean; onSale?: boolean; sort?: string; pageNumber?: number; pageSize?: number;
 }
 
 function queryString(values: object): string {
@@ -196,6 +196,7 @@ export const authToken = {
 };
 
 export const storeApi = {
+  stats: async () => request<{ bookCount: number; authorCount: number }>('/storefront/stats'),
   home: async () => {
     const value = await request<{ featured: ApiBook[]; bestsellers: ApiBook[]; newReleases: ApiBook[]; offers: ApiBook[]; authors: ApiAuthor[]; categories: ApiCategory[]; bookCount: number; authorCount: number }>('/storefront/home');
     return { ...value, featured: value.featured.map(mapBook), bestsellers: value.bestsellers.map(mapBook), newReleases: value.newReleases.map(mapBook), offers: value.offers.map(mapBook), authors: value.authors.map(mapAuthor), categories: value.categories.map(mapCategory) };
@@ -208,8 +209,8 @@ export const storeApi = {
     const value = await request<{ book: ApiBook; related: ApiBook[]; reviews: ApiReview[]; userReview: ApiReview | null; inWishlist: boolean }>(`/storefront/books/${encodeURIComponent(slug)}`);
     return { book: mapBook(value.book), related: value.related.map(mapBook), reviews: value.reviews.map(mapReview), userReview: value.userReview ? mapReview(value.userReview) : null, inWishlist: value.inWishlist };
   },
-  categories: async () => (await request<ApiCategory[]>('/storefront/categories')).map(mapCategory),
-  authors: async () => (await request<ApiAuthor[]>('/storefront/authors')).map(mapAuthor),
+  categories: async (take?: number) => (await request<ApiCategory[]>(`/storefront/categories${queryString({ take })}`)).map(mapCategory),
+  authors: async (take?: number) => (await request<ApiAuthor[]>(`/storefront/authors${queryString({ take })}`)).map(mapAuthor),
   auth: {
     restore: async () => {
       const accessToken = await refreshAccessToken();

@@ -324,7 +324,17 @@ export function BookDetailsPage() {
             <dl className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {book.publisher && <DetailRow icon={Building2} label={lang === 'ar' ? 'الناشر' : 'Publisher'} value={book.publisher} />}
               {book.publication_year && <DetailRow icon={Calendar} label={lang === 'ar' ? 'سنة النشر' : 'Published'} value={String(book.publication_year)} />}
-              {book.language && <DetailRow icon={Globe} label={lang === 'ar' ? 'اللغة' : 'Language'} value={book.language === 'ara' ? (lang === 'ar' ? 'العربية' : 'Arabic') : book.language} />}
+              {book.language && (
+                <DetailRow
+                  icon={Globe}
+                  label={lang === 'ar' ? 'اللغة' : 'Language'}
+                  value={book.language === 'ar'
+                    ? (lang === 'ar' ? 'العربية' : 'Arabic')
+                    : book.language === 'en'
+                    ? (lang === 'ar' ? 'الإنجليزية' : 'English')
+                    : book.language}
+                />
+              )}
               {book.page_count && <DetailRow icon={FileText} label={lang === 'ar' ? 'عدد الصفحات' : 'Pages'} value={String(book.page_count)} />}
               {book.isbn_10 && <DetailRow icon={Hash} label="ISBN-10" value={book.isbn_10} />}
               {book.isbn_13 && <DetailRow icon={Hash} label="ISBN-13" value={book.isbn_13} />}

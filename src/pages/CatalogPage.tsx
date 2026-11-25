@@ -147,8 +147,8 @@ export function CatalogPage() {
           className="input-field !py-2 text-sm"
         >
           <option value="">{lang === 'ar' ? 'الكل' : 'All'}</option>
-          <option value="ara">{lang === 'ar' ? 'العربية' : 'Arabic'}</option>
-          <option value="eng">{lang === 'ar' ? 'الإنجليزية' : 'English'}</option>
+          <option value="ar">{lang === 'ar' ? 'العربية' : 'Arabic'}</option>
+          <option value="en">{lang === 'ar' ? 'الإنجليزية' : 'English'}</option>
         </select>
       </div>
 

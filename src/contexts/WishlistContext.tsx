@@ -24,6 +24,7 @@ const WishlistContext = createContext<WishlistContextValue | null>(null);
 export function WishlistProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
   const idsRef = useRef<Set<string>>(new Set());
+  const mutationVersionRef = useRef(0);
   const [wishlistIds, setWishlistIds] = useState<Set<string>>(() => new Set());
 
   const commit = useCallback((update: (current: Set<string>) => Set<string>) => {
@@ -34,6 +35,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let active = true;
+    const versionAtLoad = mutationVersionRef.current;
 
     if (!user) {
       commit(() => new Set());
@@ -42,10 +44,13 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
 
     storeApi.wishlist.list()
       .then((items) => {
-        if (active) commit(() => new Set(items.map((book) => String(book.id))));
+        // Do not let a slower initial request overwrite an optimistic add/remove.
+        if (active && mutationVersionRef.current === versionAtLoad) {
+          commit(() => new Set(items.map((book) => String(book.id))));
+        }
       })
       .catch(() => {
-        if (active) commit(() => new Set());
+        if (active && mutationVersionRef.current === versionAtLoad) commit(() => new Set());
       });
 
     return () => { active = false; };
@@ -55,6 +60,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
     const id = String(bookId);
     if (idsRef.current.has(id)) return;
 
+    mutationVersionRef.current += 1;
     commit((current) => new Set(current).add(id));
     try {
       await storeApi.wishlist.add(id);
@@ -73,6 +79,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
     const wasPresent = idsRef.current.has(id);
 
     if (wasPresent) {
+      mutationVersionRef.current += 1;
       commit((current) => {
         const next = new Set(current);
         next.delete(id);

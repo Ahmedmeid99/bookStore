@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
+import { useWishlist } from '@/contexts/WishlistContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { storeApi } from '@/lib/api';
 import type { Category } from '@/types/database';
@@ -13,6 +14,7 @@ import type { Category } from '@/types/database';
 export function Navbar() {
   const { lang, t } = useLanguage();
   const { itemCount, setCartOpen } = useCart();
+  const { wishlistCount } = useWishlist();
   const { user, profile, isAdmin, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,7 +35,7 @@ export function Navbar() {
     setMobileOpen(false);
     setAccountOpen(false);
     setCategoriesMenuOpen(false);
-  }, [location.pathname]);
+  }, [location.pathname, location.search]);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -70,8 +72,8 @@ export function Navbar() {
                 <BookOpen className="h-6 w-6" />
               </div>
               <div className="hidden sm:block">
-                <span className="font-serif text-lg font-bold text-navy-900">الكتب</span>
-                <span className="block text-[10px] text-gold-600 -mt-1">AL KOTOB BOOKSTORE</span>
+                <span className="font-serif text-lg font-bold text-navy-900">{lang === 'ar' ? 'متجر الكتب' : 'Book Store'}</span>
+                <span className="block text-[10px] text-gold-600 -mt-1">BOOK STORE</span>
               </div>
             </Link>
 
@@ -128,10 +130,15 @@ export function Navbar() {
               {/* Wishlist */}
               <Link
                 to="/wishlist"
-                className="rounded-lg p-2 text-navy-700 transition-colors hover:bg-ivory-200"
+                className="relative rounded-lg p-2 text-navy-700 transition-colors hover:bg-ivory-200"
                 aria-label={t('nav.wishlist')}
               >
                 <Heart className="h-5 w-5" />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-burgundy-600 px-1 text-[10px] font-bold tabular-nums text-ivory-50">
+                    {wishlistCount}
+                  </span>
+                )}
               </Link>
 
               {/* Cart */}
@@ -244,7 +251,12 @@ export function Navbar() {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <nav className="lg:hidden border-t border-ivory-200 bg-ivory-50 px-4 py-3 space-y-1 animate-slide-up">
+          <nav
+            className="lg:hidden border-t border-ivory-200 bg-ivory-50 px-4 py-3 space-y-1 animate-slide-up"
+            onClick={(event) => {
+              if ((event.target as HTMLElement).closest('a')) setMobileOpen(false);
+            }}
+          >
             <Link to="/" className="block rounded-lg px-3 py-2 text-sm font-medium text-navy-800 hover:bg-ivory-200">{t('nav.home')}</Link>
             <Link to="/catalog" className="block rounded-lg px-3 py-2 text-sm font-medium text-navy-800 hover:bg-ivory-200">{t('nav.catalog')}</Link>
             <div className="border-t border-ivory-200 my-2" />
